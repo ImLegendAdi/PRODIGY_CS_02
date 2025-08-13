@@ -1,0 +1,173 @@
+<!-- Password Checker by 3L173 H4CK3R 1337 (@imlegendadi)
+Github - github.com/ImLegendAdi-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stegnographic Toolkit</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="script.js" defer></script>
+  <style>
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: transparent;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .neon-green {
+    color:  #00ff00;
+    text-shadow:
+    0 0 3px  #00ff00;
+    }
+
+    .neon-red-maroon {
+    color: #ff0033; /* Neon Red Base */
+    text-shadow: 
+    0 0 2px #ff0033,   /* Neon Red glow */
+    0 0 3px #800000;
+    }
+
+    .neon-cyan-navy {
+    color: #00ffff; /* Cyan Base */
+    text-shadow: 
+    0 0 3px #00ffff,   /* Inner Cyan glow */
+    0 0 5px #001f6e;
+    }
+
+    .neon-brinjal {
+    color: #8e00ff; /* Bright neon purple */
+    text-shadow: 
+    0 0 5px #8e00ff,   /* Inner purple glow */
+    0 0 10px #4b0082;
+    }
+
+    .logo-bar {
+    position: fixed; /* same position pr rahega scroll krte time */
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 15px; /* logo ke beech ka space */
+    z-index: 9999;
+    }
+
+    .logo-bar img {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 5px #00ffff);
+    transition: transform 0.2s ease, filter 0.3s ease;
+    }
+
+    .logo-bar img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px #001f6e) drop-shadow(0 0 12px #001f6e);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white overflow-auto" style="background: linear-gradient(to bottom, #000000, #040720, #123456);">
+
+  <!-- Particle ka Background -->
+  <div id="particles-js"></div>
+
+      <!-- SVG logo -->
+  <div class="logo-bar">
+    <a href="https://github.com/in/ImLegendAdi" target="_blank">
+        <img src="https://cdn.worldvectorlogo.com/logos/github-icon-2.svg" alt="GitHub">
+    </a>
+    <a href="https://linkedin.com/in/ImLegendAdi" target="_blank">
+        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="Linkedin">
+    </a>
+    <a href="https://ImLegendAdi.netlify.app" target="_blank">
+        <img src="https://www.svgrepo.com/show/209401/internet.svg" alt="Portfolio">
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content w-full max-w-2xl mx-auto px-4 py-10 space-y-10">
+
+    <h1 class="text-3xl font-serif font-bold italic font-[cursive] tracking-tight text-center"> 
+      <span class="neon-cyan-navy">Pixel Manipulation &</span>
+      <span class="neon-red-maroon"> Advanced Stegnographic Toolkit</span>
+    </h1>
+    <h2 class="text-2xl font-serif font-semi-bold italic font-[cursive] tracking-tight text-center">
+      <span class="text-white">Created by Aditya Aka</span>
+      <span class="neon-green"> 3L173 H4CK3R 1337</span>
+    </h2>
+
+    <!--<div id="drop-zone" class="flex flex-col items-center space-y-4 p-6 border-4 border-dashed border-gray-600 rounded-2xl bg-gray-800 shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-blue-400">               grey background-->
+    <!-- <div id="drop-zone" class="flex flex-col items-center space-y-4 p-6 border-4 border-dashed border-gray-600 rounded-2xl bg-transparent backdrop-blur-md shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-blue-400">                    pura transparent-->
+    <div id="drop-zone" class="flex flex-col items-center space-y-4 p-6 border-4 border-dashed border-gray-600 rounded-2xl bg-white bg-opacity-10 backdrop-blur-md shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-blue-400">
+
+      <!-- File Upload -->
+      <input type="file" accept="image/*" id="file-input" class="hidden" />
+      <button id="select-file-btn" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-lg font-semibold transition">Select Image</button>
+      <p class="text-white">or drag and drop an image here</p>
+
+      <!-- Uploaded Image Preview -->
+      <img id="uploaded-image" class="max-w-full h-auto rounded-lg shadow hidden transition-transform duration-300 hover:scale-105" />
+
+      <!-- Encrypt & Decrypt Buttons -->
+      <div class="flex flex-wrap justify-center gap-4 mt-4">
+        <button id="encrypt-btn" class="px-5 py-2 bg-green-500 hover:bg-green-600 active:scale-95 rounded-lg font-semibold transition">Encrypt</button>
+        <button id="decrypt-btn" class="px-5 py-2 bg-yellow-500 hover:bg-yellow-600 active:scale-95 rounded-lg font-semibold transition">Decrypt</button>
+        <button id="lsb-btn" class="px-5 py-2 bg-pink-500 hover:bg-pink-600 active:scale-95 rounded-lg font-semibold transition">Encrypt (LSB)</button>
+      </div>
+
+      <!-- LSB ka Section -->
+      <div class="flex flex-col space-y-3 mt-4 w-full">
+        <textarea id="secret-message" placeholder="Enter your secret message..." class="w-full p-2 rounded bg-gray-700 text-white resize-none"></textarea>
+        <div class="flex flex-wrap justify-center gap-4">
+          <button id="hide-message-btn" class="px-5 py-2 bg-purple-500 hover:bg-purple-600 active:scale-95 rounded-lg font-semibold transition">Hide Message (LSB)</button>
+          <button id="visualize-lsb-btn" class="px-5 py-2 bg-red-500 hover:bg-red-600 active:scale-95 rounded-lg font-semibold transition">Visualize Flipped Pixels</button>
+          <button id="extract-message-btn" class="px-5 py-2 bg-indigo-800 hover:bg-indigo-900 active:scale-95 rounded-lg font-semibold transition">Extract Message</button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div id="progress-bar-container" class="w-full bg-gray-700 rounded h-4 overflow-hidden hidden mt-6">
+        <div id="progress-bar" class="h-full bg-blue-500 transition-all duration-300 ease-linear" style="width: 0%;"></div>
+      </div>
+
+      <!-- Output Section -->
+      <div id="output-section" class="flex flex-col items-center space-y-3 mt-6 hidden">
+        <h2 class="text-2xl font-bold">Output Image</h2>
+        <img id="processed-image" class="max-w-full h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" />
+        <button id="download-btn" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 active:scale-95 rounded-lg font-semibold transition">Download Image</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Particles JS Config -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 400 } },
+        "color": { "value": "#00BFFF" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 1 },
+        "size": { "value": 4, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#FFFFFF", "opacity": 0.5, "width": 1 },
+        "move": { "enable": true, "speed": 3, "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+        "modes": { "repulse": { "distance": 100 }, "push": { "particles_nb": 4 } }
+      },
+      "retina_detect": true
+    });
+  </script>
+
+</body>
+</html>
