@@ -48,8 +48,8 @@ Created with ❤️ by **Aditya aka 3L173 H4CK3R 1337**.
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/ImLegendAdi/PRODIGY_CS_02.git
+cd <repo>
 ```
 
 ---
